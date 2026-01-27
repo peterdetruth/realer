@@ -1,5 +1,5 @@
 <header>
-    <h1>Kennie</h1>
+    <h1>Realer</h1>
     <hr>
 
     <?php if (session()->get('isLoggedIn')): ?>
