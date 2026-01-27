@@ -1,4 +1,4 @@
 <hr>
 <footer>
-    <p>&copy; <?= date('Y') ?> Kennie</p>
+    <p>&copy; <?= date('Y') ?> Realer</p>
 </footer>
