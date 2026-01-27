@@ -18,3 +18,7 @@ Thumbs.db
 
 # --- Node (if ever used) ---
 node_modules/
+
+/writable/cache/
+/writable/logs/
+/writable/session/
