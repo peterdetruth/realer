@@ -11,7 +11,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #e6f2e6;
+            /* light/faded green */
             margin: 0;
             padding: 0;
         }
@@ -27,7 +28,8 @@
         main {
             max-width: 400px;
             margin: 30px auto;
-            background-color: #fff;
+            background-color: #ffffffcc;
+            /* white with slight transparency */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -38,6 +40,7 @@
             margin-bottom: 20px;
         }
 
+        /* Form inputs and buttons */
         label {
             font-weight: bold;
         }
@@ -57,7 +60,6 @@
             width: 100%;
             padding: 10px;
             background-color: #28a745;
-            /* green */
             color: white;
             border: none;
             border-radius: 4px;
@@ -69,6 +71,7 @@
             background-color: #218838;
         }
 
+        /* Flash messages */
         .flash-message {
             padding: 10px;
             margin-bottom: 15px;
@@ -88,6 +91,7 @@
             border: 1px solid #c3e6cb;
         }
 
+        /* Navigation links */
         nav a {
             margin: 0 10px;
             text-decoration: none;
@@ -98,24 +102,7 @@
             text-decoration: underline;
         }
 
-        .profile-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .grid-full {
-            grid-column: span 3;
-        }
-
-        label {
-            font-weight: 500;
-        }
-
-        #disability-wrapper {
-            display: none;
-        }
-
+        /* Admin-like buttons */
         .admin-btn {
             display: inline-block;
             background: #16a34a;
@@ -129,6 +116,22 @@
 
         .admin-btn:hover {
             background: #15803d;
+        }
+
+        /* Profile page grid */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .grid-full {
+            grid-column: span 3;
+        }
+
+        /* Disable Type of Disability initially */
+        #disability-wrapper {
+            display: none;
         }
     </style>
 
