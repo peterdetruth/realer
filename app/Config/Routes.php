@@ -67,6 +67,28 @@ $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     $routes->get('wards', 'Admin\WardController::index');
 });
 
+// Admin Positions
+$routes->group('admin/positions', ['filter' => 'admin'], function ($routes) {
+
+    // Index page → list all positions
+    $routes->get('', 'Admin\PositionController::index');
+
+    // Create → show form
+    $routes->get('create', 'Admin\PositionController::create');
+
+    // Store → handle form submission
+    $routes->post('store', 'Admin\PositionController::store');
+
+    // Edit → show edit form
+    $routes->get('edit/(:num)', 'Admin\PositionController::edit/$1');
+
+    // Update → handle edit submission
+    $routes->post('update/(:num)', 'Admin\PositionController::update/$1');
+
+    // Delete → remove position
+    $routes->get('delete/(:num)', 'Admin\PositionController::delete/$1');
+});
+
 
 $routes->group('ajax', function ($routes) {
     $routes->get('constituencies/(:num)', 'Ajax\LocationController::getConstituencies/$1');

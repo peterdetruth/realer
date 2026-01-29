@@ -145,18 +145,32 @@
 
         <nav>
             <a class="admin-nav-btn <?= str_starts_with($currentUri, 'admin/dashboard') ? 'active' : '' ?>"
-                href="<?= site_url('admin/dashboard') ?>">Dashboard</a>
+                href="<?= site_url('admin/dashboard') ?>">
+                Dashboard
+            </a>
 
-            <a class="admin-nav-btn <?= str_starts_with($currentUri, 'admin') && $currentUri !== 'admin/dashboard' ? 'active' : '' ?>"
-                href="<?= site_url('admin') ?>">Admin Panel</a>
+            <a class="admin-nav-btn <?= $currentUri === 'admin' ? 'active' : '' ?>"
+                href="<?= site_url('admin') ?>">
+                Admin Panel
+            </a>
+
+            <!-- Positions -->
+            <a class="admin-nav-btn <?= str_starts_with($currentUri, 'admin/positions') ? 'active' : '' ?>"
+                href="<?= site_url('admin/positions') ?>">
+                Positions
+            </a>
 
             <?php if ($role === 'admin' || $role === 'staff'): ?>
                 <a class="admin-nav-btn <?= str_starts_with($currentUri, 'staff') ? 'active' : '' ?>"
-                    href="<?= site_url('staff') ?>">Staff Area</a>
+                    href="<?= site_url('staff') ?>">
+                    Staff Area
+                </a>
             <?php endif; ?>
 
             <!-- Logout Button -->
-            <a class="admin-nav-btn" href="<?= site_url('auth/logout') ?>" style="background:#dc2626;">Logout</a>
+            <a class="admin-nav-btn" href="<?= site_url('auth/logout') ?>" style="background:#dc2626;">
+                Logout
+            </a>
         </nav>
     </header>
 
