@@ -8,3 +8,8 @@ CREATE TABLE positions (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+UPDATE users
+SET role_id = 1,
+    role = 'admin'
+WHERE email = 'admin@kennie.local';
