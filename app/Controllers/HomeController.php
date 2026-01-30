@@ -16,4 +16,20 @@ class HomeController extends BaseController
 
         return view('home', $data);
     }
+
+    // ✅ NEW METHOD
+    public function viewPosition($id)
+    {
+        $positionModel = new PositionModel();
+
+        $position = $positionModel->find($id);
+
+        if (!$position) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Position not found');
+        }
+
+        return view('positions/view', [
+            'position' => $position
+        ]);
+    }
 }

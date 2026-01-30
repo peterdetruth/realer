@@ -117,6 +117,8 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->post('profile/store', 'UserProfileController::store');
 });
 
+$routes->get('positions/view/(:num)', 'HomeController::viewPosition/$1');
+
 // --------------------
 // Temporary Step 3
 // --------------------
