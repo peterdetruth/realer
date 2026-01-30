@@ -26,19 +26,43 @@
         <?php foreach ($positions as $pos): ?>
             <tr>
                 <td><?= $pos['table_order'] ?></td>
-                <td><?= esc($pos['title']) ?></td>
+
                 <td>
-                    <ul><?php foreach (explode("\n", $pos['salary']) as $s) echo "<li>" . esc($s) . "</li>"; ?></ul>
+                    <?= esc($pos['title']) ?>
+                    <strong>(<?= esc($pos['vacant_positions']) ?>)</strong>
                 </td>
+
                 <td>
-                    <ul><?php foreach (explode("\n", $pos['duties']) as $d) echo "<li>" . esc($d) . "</li>"; ?></ul>
+                    <ul>
+                        <?php foreach (explode("\n", $pos['salary']) as $s): ?>
+                            <li><?= esc($s) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </td>
+
                 <td>
-                    <ul><?php foreach (explode("\n", $pos['requirements']) as $r) echo "<li>" . esc($r) . "</li>"; ?></ul>
+                    <ul>
+                        <?php foreach (explode("\n", $pos['duties']) as $d): ?>
+                            <li><?= esc($d) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </td>
+
+                <td>
+                    <ul>
+                        <?php foreach (explode("\n", $pos['requirements']) as $r): ?>
+                            <li><?= esc($r) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </td>
+
                 <td>
                     <a href="/admin/positions/edit/<?= $pos['id'] ?>" class="admin-btn">Edit</a>
-                    <a href="/admin/positions/delete/<?= $pos['id'] ?>" onclick="return confirm('Are you sure?')" class="admin-btn">Delete</a>
+                    <a href="/admin/positions/delete/<?= $pos['id'] ?>"
+                        onclick="return confirm('Are you sure?')"
+                        class="admin-btn">
+                        Delete
+                    </a>
                 </td>
             </tr>
         <?php endforeach; ?>

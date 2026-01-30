@@ -38,6 +38,7 @@ class PositionController extends BaseController
     {
         $data = $this->request->getPost([
             'table_order',
+            'vacant_positions',
             'title',
             'salary',
             'duties',
@@ -45,7 +46,10 @@ class PositionController extends BaseController
         ]);
 
         $this->positionModel->insert($data);
-        return redirect()->to('/admin/positions')->with('success', 'Position added successfully');
+
+        return redirect()
+            ->to('/admin/positions')
+            ->with('success', 'Position added successfully');
     }
 
     // Show edit form
@@ -68,6 +72,7 @@ class PositionController extends BaseController
     {
         $data = $this->request->getPost([
             'table_order',
+            'vacant_positions',
             'title',
             'salary',
             'duties',
@@ -75,7 +80,10 @@ class PositionController extends BaseController
         ]);
 
         $this->positionModel->update($id, $data);
-        return redirect()->to('/admin/positions')->with('success', 'Position updated successfully');
+
+        return redirect()
+            ->to('/admin/positions')
+            ->with('success', 'Position updated successfully');
     }
 
     // Delete position

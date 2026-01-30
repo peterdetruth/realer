@@ -22,6 +22,7 @@
         method="post"
         style="max-width:600px; width:100%; text-align:left; margin-top:20px;">
 
+        <!-- Number on Table -->
         <label for="table_order">Number on Table</label>
         <input
             type="number"
@@ -31,6 +32,18 @@
             required
             class="input-field">
 
+        <!-- Vacant Positions -->
+        <label for="vacant_positions">Number of Vacant Positions</label>
+        <input
+            type="number"
+            name="vacant_positions"
+            id="vacant_positions"
+            min="1"
+            value="<?= old('vacant_positions', $position['vacant_positions']) ?>"
+            required
+            class="input-field">
+
+        <!-- Position Title -->
         <label for="title">Position</label>
         <input
             type="text"
@@ -40,6 +53,7 @@
             required
             class="input-field">
 
+        <!-- Salary -->
         <label for="salary">Salary (each line will be a bullet)</label>
         <textarea
             name="salary"
@@ -48,6 +62,7 @@
             required
             class="textarea-field"><?= old('salary', $position['salary']) ?></textarea>
 
+        <!-- Duties -->
         <label for="duties">Duties and Responsibilities (each line will be a bullet)</label>
         <textarea
             name="duties"
@@ -56,6 +71,7 @@
             required
             class="textarea-field"><?= old('duties', $position['duties']) ?></textarea>
 
+        <!-- Requirements -->
         <label for="requirements">Requirements (each line will be a bullet)</label>
         <textarea
             name="requirements"
