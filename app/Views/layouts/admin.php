@@ -144,11 +144,19 @@
         <strong>Realer Admin Panel</strong>
 
         <nav>
+            <!-- Home -->
+            <a class="admin-nav-btn <?= $currentUri === '/' ? 'active' : '' ?>"
+                href="<?= site_url('/') ?>">
+                Home
+            </a>
+
+            <!-- Dashboard -->
             <a class="admin-nav-btn <?= str_starts_with($currentUri, 'admin/dashboard') ? 'active' : '' ?>"
                 href="<?= site_url('admin/dashboard') ?>">
                 Dashboard
             </a>
 
+            <!-- Admin Panel -->
             <a class="admin-nav-btn <?= $currentUri === 'admin' ? 'active' : '' ?>"
                 href="<?= site_url('admin') ?>">
                 Admin Panel
@@ -167,7 +175,7 @@
                 </a>
             <?php endif; ?>
 
-            <!-- Logout Button -->
+            <!-- Logout -->
             <a class="admin-nav-btn" href="<?= site_url('auth/logout') ?>" style="background:#dc2626;">
                 Logout
             </a>

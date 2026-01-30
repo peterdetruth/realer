@@ -13,3 +13,6 @@ UPDATE users
 SET role_id = 1,
     role = 'admin'
 WHERE email = 'admin@kennie.local';
+
+ALTER TABLE positions ADD vacant_positions INT NOT NULL AFTER table_order;
+
