@@ -79,6 +79,41 @@ ALTER TABLE education_qualifications MODIFY education_level_id INT UNSIGNED NOT 
 
 ALTER TABLE education_qualifications ADD CONSTRAINT fk_qualification_level FOREIGN KEY (education_level_id) REFERENCES education_levels(id) ON DELETE CASCADE;
 
+CREATE TABLE `applications` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `user_id` INT UNSIGNED NOT NULL,
+    `position_id` INT UNSIGNED NOT NULL,
+    `county_id` INT UNSIGNED NOT NULL,
+    `constituency_id` INT UNSIGNED DEFAULT NULL,
+    `ward_id` INT UNSIGNED DEFAULT NULL,
 
+    `primary_education_level_id` INT UNSIGNED NOT NULL,
+    `primary_qualification_id` INT UNSIGNED NOT NULL,
 
+    `secondary_education_level_id` INT UNSIGNED NOT NULL,
+    `secondary_qualification_id` INT UNSIGNED NOT NULL,
 
+    `tertiary_education_level_id` INT UNSIGNED DEFAULT NULL,
+    `tertiary_qualification_id` INT UNSIGNED DEFAULT NULL,
+
+    `work_experience_id` INT UNSIGNED NOT NULL,
+    `work_experience_period` VARCHAR(50) NOT NULL,
+
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (`id`),
+
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`position_id`) REFERENCES `positions`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`county_id`) REFERENCES `counties`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`constituency_id`) REFERENCES `constituencies`(`id`) ON DELETE SET NULL,
+    FOREIGN KEY (`ward_id`) REFERENCES `wards`(`id`) ON DELETE SET NULL,
+    FOREIGN KEY (`primary_education_level_id`) REFERENCES `education_levels`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`primary_qualification_id`) REFERENCES `qualifications`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`secondary_education_level_id`) REFERENCES `education_levels`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`secondary_qualification_id`) REFERENCES `qualifications`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`tertiary_education_level_id`) REFERENCES `education_levels`(`id`) ON DELETE SET NULL,
+    FOREIGN KEY (`tertiary_qualification_id`) REFERENCES `qualifications`(`id`) ON DELETE SET NULL,
+    FOREIGN KEY (`work_experience_id`) REFERENCES `work_experiences`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
