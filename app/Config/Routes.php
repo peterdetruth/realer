@@ -93,6 +93,18 @@ $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('wards/delete/(:num)', 'Admin\WardController::delete/$1');
 });
 
+$routes->group('admin', ['filter' => 'auth'], function ($routes) {
+
+    $routes->get('education-levels', 'Admin\EducationLevelController::index');
+    $routes->get('education-levels/create', 'Admin\EducationLevelController::create');
+    $routes->post('education-levels/store', 'Admin\EducationLevelController::store');
+
+    $routes->get('education-levels/edit/(:num)', 'Admin\EducationLevelController::edit/$1');
+    $routes->post('education-levels/update/(:num)', 'Admin\EducationLevelController::update/$1');
+
+    $routes->get('education-levels/delete/(:num)', 'Admin\EducationLevelController::delete/$1');
+});
+
 // --------------------
 // Admin Panel & Dashboard (generic)
 // --------------------

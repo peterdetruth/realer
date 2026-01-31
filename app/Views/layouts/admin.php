@@ -168,6 +168,12 @@
                 Positions
             </a>
 
+            <!-- Education Levels -->
+            <a class="admin-nav-btn <?= str_starts_with($currentUri, 'admin/education-levels') ? 'active' : '' ?>"
+                href="<?= site_url('admin/education-levels') ?>">
+                Education Levels
+            </a>
+
             <?php if ($role === 'admin' || $role === 'staff'): ?>
                 <a class="admin-nav-btn <?= str_starts_with($currentUri, 'staff') ? 'active' : '' ?>"
                     href="<?= site_url('staff') ?>">
