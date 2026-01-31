@@ -57,3 +57,28 @@ CREATE TABLE experience_periods (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+CREATE TABLE `qualifications` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `education_level_id` INT UNSIGNED NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `sort_order` INT UNSIGNED DEFAULT 0,
+    `is_active` TINYINT(1) DEFAULT 1,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    CONSTRAINT fk_education_level
+        FOREIGN KEY (`education_level_id`)
+        REFERENCES `education_levels`(`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE education_qualifications DROP FOREIGN KEY fk_qualification_level;
+ALTER TABLE education_levels MODIFY id INT UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE education_qualifications MODIFY education_level_id INT UNSIGNED NOT NULL;
+
+ALTER TABLE education_qualifications ADD CONSTRAINT fk_qualification_level FOREIGN KEY (education_level_id) REFERENCES education_levels(id) ON DELETE CASCADE;
+
+
+
+
