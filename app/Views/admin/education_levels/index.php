@@ -57,7 +57,13 @@
             <?php endif; ?>
         </tbody>
     </table>
+
+    <div style="margin-bottom:20px;">
+        <a href="<?= site_url('admin/work-experience') ?>" class="admin-btn">Work Experience</a>
+    </div>
 </div>
+
+
 
 <style>
     .admin-dashboard-container {

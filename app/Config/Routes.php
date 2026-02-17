@@ -138,6 +138,8 @@ $routes->get('application/constituencies/(:num)', 'ApplicationController::consti
 $routes->get('application/wards/(:num)', 'ApplicationController::wards/$1');
 $routes->get('application/qualifications/(:num)', 'ApplicationController::qualifications/$1');
 
+$routes->get('admin/work-experience', 'Admin\WorkExperienceController::index');
+
 
 
 // --------------------
