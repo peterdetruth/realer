@@ -213,7 +213,63 @@
 
 <!-- Dynamic dropdowns remain the same as before -->
 <script>
-    // ...same JavaScript for County → Constituency → Ward and Education Level → Qualification
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Application form script loaded');
+
+        const countyEl = document.getElementById('county');
+        const constituencyEl = document.getElementById('constituency');
+        const wardEl = document.getElementById('ward');
+
+        // County → Constituencies
+        countyEl.addEventListener('change', function() {
+
+            const countyId = this.value;
+
+            constituencyEl.innerHTML = '<option value="">Loading...</option>';
+            wardEl.innerHTML = '<option value="">Select Ward</option>';
+
+            if (!countyId) {
+                constituencyEl.innerHTML = '<option value="">Select Constituency</option>';
+                return;
+            }
+
+            fetch(`/application/constituencies/${countyId}`)
+                .then(res => res.json())
+                .then(data => {
+
+                    constituencyEl.innerHTML = '<option value="">Select Constituency</option>';
+
+                    data.forEach(c => {
+                        constituencyEl.innerHTML += `<option value="${c.id}">${c.name}</option>`;
+                    });
+                });
+        });
+
+        // Constituency → Wards
+        constituencyEl.addEventListener('change', function() {
+
+            const constituencyId = this.value;
+
+            wardEl.innerHTML = '<option value="">Loading...</option>';
+
+            if (!constituencyId) {
+                wardEl.innerHTML = '<option value="">Select Ward</option>';
+                return;
+            }
+
+            fetch(`/application/wards/${constituencyId}`)
+                .then(res => res.json())
+                .then(data => {
+
+                    wardEl.innerHTML = '<option value="">Select Ward</option>';
+
+                    data.forEach(w => {
+                        wardEl.innerHTML += `<option value="${w.id}">${w.name}</option>`;
+                    });
+                });
+        });
+
+    });
 </script>
 
 <?= $this->endSection() ?>

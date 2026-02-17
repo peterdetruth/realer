@@ -69,4 +69,24 @@ class ApplicationController extends BaseController
 
         return redirect()->to('/')->with('success', 'Application submitted successfully.');
     }
+
+    public function constituencies($county_id)
+    {
+        $data = $this->constituencyModel
+            ->where('county_id', $county_id)
+            ->orderBy('name', 'ASC')
+            ->findAll();
+
+        return $this->response->setJSON($data);
+    }
+
+    public function wards($constituency_id)
+    {
+        $data = $this->wardModel
+            ->where('constituency_id', $constituency_id)
+            ->orderBy('name', 'ASC')
+            ->findAll();
+
+        return $this->response->setJSON($data);
+    }
 }

@@ -134,6 +134,9 @@ $routes->get('positions/view/(:num)', 'HomeController::viewPosition/$1');
 // User application routes
 $routes->get('application/create', 'ApplicationController::create'); // Show the application form
 $routes->post('application/store', 'ApplicationController::store'); // Handle form submission
+$routes->get('application/constituencies/(:num)', 'ApplicationController::constituencies/$1');
+$routes->get('application/wards/(:num)', 'ApplicationController::wards/$1');
+
 
 // --------------------
 // Temporary Step 3
