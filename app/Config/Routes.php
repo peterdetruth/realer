@@ -136,6 +136,8 @@ $routes->get('application/create', 'ApplicationController::create'); // Show the
 $routes->post('application/store', 'ApplicationController::store'); // Handle form submission
 $routes->get('application/constituencies/(:num)', 'ApplicationController::constituencies/$1');
 $routes->get('application/wards/(:num)', 'ApplicationController::wards/$1');
+$routes->get('application/qualifications/(:num)', 'ApplicationController::qualifications/$1');
+
 
 
 // --------------------

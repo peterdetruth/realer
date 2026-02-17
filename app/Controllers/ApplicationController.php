@@ -89,4 +89,15 @@ class ApplicationController extends BaseController
 
         return $this->response->setJSON($data);
     }
+
+    public function qualifications($education_level_id)
+    {
+        $data = $this->qualificationModel
+            ->where('education_level_id', $education_level_id)
+            ->where('is_active', 1)
+            ->orderBy('sort_order', 'ASC')
+            ->findAll();
+
+        return $this->response->setJSON($data);
+    }
 }

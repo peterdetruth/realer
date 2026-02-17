@@ -269,6 +269,44 @@
                 });
         });
 
+        // Load qualifications for education levels
+        function loadQualifications(levelSelectId, qualificationSelectId) {
+            const levelSelect = document.getElementById(levelSelectId);
+            const qualificationSelect = document.getElementById(qualificationSelectId);
+
+            levelSelect.addEventListener('change', function() {
+                const levelId = this.value;
+
+                qualificationSelect.innerHTML = '<option value="">Loading...</option>';
+
+                if (!levelId) {
+                    qualificationSelect.innerHTML = '<option value="">Select Qualification</option>';
+                    return;
+                }
+
+                fetch(`/application/qualifications/${levelId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        qualificationSelect.innerHTML = '<option value="">Select Qualification</option>';
+
+                        data.forEach(q => {
+                            const option = document.createElement('option');
+                            option.value = q.id;
+                            option.textContent = q.name;
+                            qualificationSelect.appendChild(option);
+                        });
+                    })
+                    .catch(() => {
+                        qualificationSelect.innerHTML = '<option value="">Error loading</option>';
+                    });
+            });
+        }
+
+        // Attach to all 3 education levels
+        loadQualifications('primary_education_level', 'primary_qualification');
+        loadQualifications('secondary_education_level', 'secondary_qualification');
+        loadQualifications('tertiary_education_level', 'tertiary_qualification');
+
     });
 </script>
 
