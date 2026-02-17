@@ -10,6 +10,7 @@ use App\Models\WardModel;
 use App\Models\EducationLevelModel;
 use App\Models\QualificationModel;
 use App\Models\WorkExperienceModel;
+use App\Models\ExperiencePeriodModel;
 
 class ApplicationController extends BaseController
 {
@@ -34,6 +35,25 @@ class ApplicationController extends BaseController
         $this->workExperienceModel = new WorkExperienceModel();
     }
 
+    public function index()
+    {
+        $applications = $this->applicationModel
+            ->select('applications.*,
+                users.name as user_name,
+                positions.title as position_title,
+                counties.name as county_name')
+            ->join('users', 'users.id = applications.user_id')
+            ->join('positions', 'positions.id = applications.position_id')
+            ->join('counties', 'counties.id = applications.county_id')
+            ->orderBy('applications.created_at', 'DESC')
+            ->findAll();
+
+        return view('admin/applications/index', [
+            'title' => 'Applications',
+            'applications' => $applications
+        ]);
+    }
+
     public function create()
     {
         return view('application/create', [
@@ -41,6 +61,7 @@ class ApplicationController extends BaseController
             'counties' => $this->countyModel->findAll(),
             'education_levels' => $this->educationLevelModel->where('is_active', 1)->orderBy('sort_order', 'ASC')->findAll(),
             'work_experiences' => $this->workExperienceModel->where('is_active', 1)->findAll(),
+            'experience_periods' => (new ExperiencePeriodModel())->where('is_active', 1)->orderBy('sort_order', 'ASC')->findAll()
         ]);
     }
 
@@ -60,7 +81,7 @@ class ApplicationController extends BaseController
             'tertiary_education_level_id',
             'tertiary_qualification_id',
             'work_experience_id',
-            'work_experience_period',
+            'work_experience_period_id',
         ]);
 
         $data['user_id'] = $user_id;

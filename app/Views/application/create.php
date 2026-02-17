@@ -129,7 +129,12 @@
             </div>
             <div class="form-col">
                 <label>Period of Work Experience <span class="required">*</span></label>
-                <input type="text" name="work_experience_period" placeholder="e.g., 2 years" required class="input-field">
+                <select name="work_experience_period_id" required class="input-field">
+                    <option value="">Select Period</option>
+                    <?php foreach ($experience_periods as $ep): ?>
+                        <option value="<?= $ep['id'] ?>"><?= esc($ep['label']) ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
 

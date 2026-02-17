@@ -10,7 +10,6 @@ use CodeIgniter\Router\RouteCollection;
 // Public Routes
 // --------------------
 $routes->get('/', 'HomeController::index');
-// $routes->get('/', 'Home::index');
 $routes->get('testuser', 'TestUser::index');
 $routes->get('testauth/login', 'TestAuth::login');
 $routes->get('testauth/logout', 'TestAuth::logout');
@@ -29,9 +28,7 @@ $routes->group('auth', ['namespace' => 'App\Controllers\Auth'], function ($route
 // --------------------
 // Dashboard Route
 // --------------------
-// $routes->get('dashboard', 'DashboardController::index', ['filter' => 'auth']);
 $routes->get('dashboard', 'Admin\DashboardController::index', ['filter' => 'auth']);
-
 
 // --------------------
 // Staff Route
@@ -39,7 +36,7 @@ $routes->get('dashboard', 'Admin\DashboardController::index', ['filter' => 'auth
 $routes->get('staff', 'StaffController::index', ['filter' => 'auth:admin,staff']);
 
 // --------------------
-// Admin Routes (users)
+// Admin Routes (Users)
 // --------------------
 $routes->group('', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('admin', 'AdminController::index');
@@ -52,22 +49,21 @@ $routes->group('', ['filter' => 'auth:admin'], function ($routes) {
 });
 
 // --------------------
-// Admin Positions Routes
+// Admin Positions
 // --------------------
 $routes->group('admin/positions', ['filter' => 'auth:admin'], function ($routes) {
-    $routes->get('', 'Admin\PositionController::index'); // List positions
-    $routes->get('create', 'Admin\PositionController::create'); // Show create form
-    $routes->post('store', 'Admin\PositionController::store'); // Store new position
-    $routes->get('edit/(:num)', 'Admin\PositionController::edit/$1'); // Edit form
-    $routes->post('update/(:num)', 'Admin\PositionController::update/$1'); // Update
-    $routes->get('delete/(:num)', 'Admin\PositionController::delete/$1'); // Delete
+    $routes->get('', 'Admin\PositionController::index');
+    $routes->get('create', 'Admin\PositionController::create');
+    $routes->post('store', 'Admin\PositionController::store');
+    $routes->get('edit/(:num)', 'Admin\PositionController::edit/$1');
+    $routes->post('update/(:num)', 'Admin\PositionController::update/$1');
+    $routes->get('delete/(:num)', 'Admin\PositionController::delete/$1');
 });
 
 // --------------------
-// Admin Locations Routes (counties, constituencies, wards)
+// Admin Locations
 // --------------------
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
-
     // Counties
     $routes->get('counties', 'Admin\CountyController::index');
     $routes->get('counties/create', 'Admin\CountyController::create');
@@ -93,25 +89,43 @@ $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('wards/delete/(:num)', 'Admin\WardController::delete/$1');
 });
 
+// --------------------
+// Education Levels
+// --------------------
 $routes->group('admin', ['filter' => 'auth'], function ($routes) {
-
     $routes->get('education-levels', 'Admin\EducationLevelController::index');
     $routes->get('education-levels/create', 'Admin\EducationLevelController::create');
     $routes->post('education-levels/store', 'Admin\EducationLevelController::store');
-
     $routes->get('education-levels/edit/(:num)', 'Admin\EducationLevelController::edit/$1');
     $routes->post('education-levels/update/(:num)', 'Admin\EducationLevelController::update/$1');
-
     $routes->get('education-levels/delete/(:num)', 'Admin\EducationLevelController::delete/$1');
 });
 
 // --------------------
-// Admin Panel & Dashboard (generic)
+// Admin Dashboard + Panel
 // --------------------
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
-    $routes->get('', 'Admin\UserController::index'); // Admin Panel landing
-    $routes->get('dashboard', 'Admin\DashboardController::index'); // Admin Dashboard
+    $routes->get('', 'Admin\UserController::index');
+    $routes->get('dashboard', 'Admin\DashboardController::index');
 });
+
+// --------------------
+// Admin Work Experience
+// --------------------
+$routes->group('admin/work-experience', ['filter' => 'auth:admin'], function ($routes) {
+    $routes->get('', 'Admin\WorkExperienceController::index');
+    $routes->post('create-work', 'Admin\WorkExperienceController::createWork');
+    $routes->post('update-work/(:num)', 'Admin\WorkExperienceController::updateWork/$1');
+    $routes->get('delete-work/(:num)', 'Admin\WorkExperienceController::deleteWork/$1');
+    $routes->post('create-period', 'Admin\WorkExperienceController::createPeriod');
+    $routes->post('update-period/(:num)', 'Admin\WorkExperienceController::updatePeriod/$1');
+    $routes->get('delete-period/(:num)', 'Admin\WorkExperienceController::deletePeriod/$1');
+});
+
+// --------------------
+// Admin Applications (Standalone)
+// --------------------
+$routes->get('admin/applications', 'ApplicationController::index', ['filter' => 'auth:admin']);
 
 // --------------------
 // AJAX Routes
@@ -122,25 +136,26 @@ $routes->group('ajax', function ($routes) {
 });
 
 // --------------------
-// User Profile Routes
+// User Profile
 // --------------------
 $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('profile', 'UserProfileController::index');
     $routes->post('profile/store', 'UserProfileController::store');
 });
 
+// --------------------
+// Positions Public View
+// --------------------
 $routes->get('positions/view/(:num)', 'HomeController::viewPosition/$1');
 
-// User application routes
-$routes->get('application/create', 'ApplicationController::create'); // Show the application form
-$routes->post('application/store', 'ApplicationController::store'); // Handle form submission
+// --------------------
+// User Applications
+// --------------------
+$routes->get('application/create', 'ApplicationController::create');
+$routes->post('application/store', 'ApplicationController::store');
 $routes->get('application/constituencies/(:num)', 'ApplicationController::constituencies/$1');
 $routes->get('application/wards/(:num)', 'ApplicationController::wards/$1');
 $routes->get('application/qualifications/(:num)', 'ApplicationController::qualifications/$1');
-
-$routes->get('admin/work-experience', 'Admin\WorkExperienceController::index');
-
-
 
 // --------------------
 // Temporary Step 3

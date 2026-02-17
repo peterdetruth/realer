@@ -174,6 +174,12 @@
                 Education Levels
             </a>
 
+            <!-- Applications -->
+            <a class="admin-nav-btn <?= str_starts_with($currentUri, 'admin/applications') ? 'active' : '' ?>"
+                href="<?= site_url('admin/applications') ?>">
+                Applications
+            </a>
+
             <?php if ($role === 'admin' || $role === 'staff'): ?>
                 <a class="admin-nav-btn <?= str_starts_with($currentUri, 'staff') ? 'active' : '' ?>"
                     href="<?= site_url('staff') ?>">

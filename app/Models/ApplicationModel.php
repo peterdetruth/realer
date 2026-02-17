@@ -21,7 +21,7 @@ class ApplicationModel extends Model
         'tertiary_education_level_id',
         'tertiary_qualification_id',
         'work_experience_id',
-        'work_experience_period',
+        'work_experience_period_id',
     ];
     protected $useTimestamps = true;
 }
